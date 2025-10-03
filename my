@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome — My Dear ❤️</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --card-bg: rgba(255,255,255,0.12);
+      --glass-border: rgba(255,255,255,0.18);
+      --accent: rgba(255,255,255,0.9);
+    }
+
+    /* animated multicolor gradient background */
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+      color:var(--accent);
+      background: linear-gradient(120deg, #ff6b6b, #f9c74f, #90be6d, #4d96ff, #b197fc);
+      background-size: 1000% 1000%;
+      animation: gradientShift 18s ease infinite;
+    }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    /* main card */
+    .card{
+      width: min(920px, 94%);
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      padding:28px;
+      border-radius:18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    /* left content */
+    .left{
+      flex:1 1 56%;
+      min-width:220px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4.6vw, 48px);
+      line-height:1.02;
+      font-weight:800;
+      letter-spacing: -0.6px;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    h1 .heart{
+      transform: translateY(-4px) rotate(-8deg);
+      font-size:1.05em;
+    }
+
+    p.lead{
+      margin:12px 0 20px 0;
+      color:rgba(255,255,255,0.92);
+      font-weight:500;
+      opacity:0.95;
+      max-width:58ch;
+    }
+
+    /* click button */
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.14);
+      font-weight:700;
+      color:var(--accent);
+      transition: transform .18s ease, box-shadow .18s ease;
+      user-select:none;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+    .cta:active{ transform: translateY(2px) scale(.996); }
+    .cta .finger{ font-size:1.25rem; }
+
+    /* message box */
+    .message{
+      margin-top:18px;
+      min-height:56px;
+      font-weight:600;
+      font-size: clamp(15px, 2.2vw, 20px);
+      color:#fff;
+      letter-spacing:0.2px;
+      opacity:0;
+      transform: translateY(8px);
+    }
+
+    /* show animation */
+    .message.show{
+      animation: fadeUp .6s cubic-bezier(.2,.9,.3,1) forwards;
+    }
+    @keyframes fadeUp{
+      to{ opacity:1; transform:none; }
+    }
+
+    /* typing effect */
+    .typed {
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      border-right: .14em solid rgba(255,255,255,0.75);
+      animation: typing 3.6s steps(50,end), blink .8s step-end infinite;
+      max-width: 100%;
+    }
+    @keyframes typing{
+      from{ width:0; }
+      to{ width:100%; }
+    }
+    @keyframes blink{
+      50%{ border-color: transparent; }
+    }
+
+    /* right side - laptop illustration */
+    .right{
+      flex:0 0 300px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+    }
+    .laptop{
+      width:240px;
+      max-width:46vw;
+      filter: drop-shadow(0 10px 26px rgba(0,0,0,0.28));
+      transform: translateY(2px);
+    }
+
+    /* responsive */
+    @media (max-width:820px){
+      .card{ flex-direction:column; align-items:flex-start; gap:16px; padding:20px; }
+      .right{ align-self:center; }
+    }
+
+    /* small sparkle accent */
+    .sparkle{
+      display:inline-block;
+      margin-left:8px;
+      transform-origin:center;
+      animation: sparkle 2.8s linear infinite;
+      opacity:.95;
+    }
+    @keyframes sparkle{
+      0%{ transform: rotate(0) scale(1); opacity:.95; }
+      50%{ transform: rotate(8deg) scale(1.06); opacity:1; }
+      100%{ transform: rotate(0) scale(1); opacity:.95; }
+    }
+
+    footer.note{
+      text-align:center;
+      width:100%;
+      margin-top:16px;
+      font-size:13px;
+      color:rgba(255,255,255,0.82);
+      opacity:0.9;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="mainTitle">
+    <section class="left">
+      <h1 id="mainTitle">
+        <span style="font-weight:800">welcome</span>
+        <span style="font-weight:600; color: #fff; opacity:0.95">my dear</span>
+        <span class="heart" aria-hidden="true">❤️</span>
+        <span class="sparkle" aria-hidden="true">✨</span>
+      </h1>
+
+      <p class="lead">Mee presence ki chala santosham — okka chinna touch cheyandi 😊</p>
+
+      <button class="cta" id="clickBtn" aria-controls="message" aria-expanded="false">
+        <span class="finger" aria-hidden="true">👉</span>
+        <span>Click here</span>
+      </button>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+
+      <footer class="note">Share this page link with others — they can open it in any browser.</footer>
+    </section>
+
+    <aside class="right" aria-hidden="true">
+      <!-- Inline laptop SVG (stylized) -->
+      <svg class="laptop" viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Laptop illustration">
+        <!-- screen -->
+        <rect x="48" y="48" width="544" height="320" rx="20" fill="url(#screenGrad)"/>
+        <defs>
+          <linearGradient id="screenGrad" x1="0" x2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.12"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.03"/>
+          </linearGradient>
+        </defs>
+        <!-- inner colorful display -->
+        <rect x="80" y="86" width="480" height="240" rx="12" fill="url(#innerGrad)"/>
+        <linearGradient id="innerGrad" x1="0" x2="1">
+          <stop offset="0" stop-color="#ffd166"/>
+          <stop offset="0.25" stop-color="#ef476f"/>
+          <stop offset="0.5" stop-color="#06d6a0"/>
+          <stop offset="0.75" stop-color="#118ab2"/>
+          <stop offset="1" stop-color="#8e44ad"/>
+        </linearGradient>
+
+        <!-- keyboard base -->
+        <rect x="0" y="400" width="640" height="56" rx="28" fill="rgba(0,0,0,0.18)"/>
+        <!-- hinge -->
+        <rect x="32" y="368" width="576" height="36" rx="8" fill="rgba(0,0,0,0.22)"/>
+        <!-- base shadow -->
+        <ellipse cx="320" cy="478" rx="220" ry="18" fill="rgba(0,0,0,0.18)"/>
+      </svg>
+    </aside>
+  </main>
+
+  <script>
+    // The message to show (user requested text)
+    const messageText = "the working hands for others peace is so beautiful";
+
+    const btn = document.getElementById('clickBtn');
+    const msg = document.getElementById('message');
+
+    let shown = false;
+    btn.addEventListener('click', () => {
+      if(shown) {
+        // toggle hide if clicked again
+        msg.classList.remove('show');
+        msg.innerHTML = '';
+        btn.setAttribute('aria-expanded','false');
+        shown = false;
+        return;
+      }
+
+      // reveal animated text
+      msg.classList.add('show');
+      // create typed span
+      const typed = document.createElement('span');
+      typed.className = 'typed';
+      typed.textContent = messageText;
+      msg.innerHTML = ''; // clear
+      msg.appendChild(typed);
+      btn.setAttribute('aria-expanded','true');
+      shown = true;
+
+      // remove typing caret after animation ends (approx)
+      setTimeout(()=> {
+        typed.style.borderRight = '0';
+      }, 3800);
+    });
+
+    // Accessibility: allow Enter/Space on button to trigger
+    btn.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+    });
+  </script>
+</body>
+</html>
