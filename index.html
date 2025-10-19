@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="నా యాప్">
     <meta name="description" content="నా అద్భుత యాప్">
     <title>నా సుందర యాప్</title>
-    <link rel="manifest" href="data:application/json,{%22name%22:%22నా యాప్%22,%22short_name%22:%22యాప్%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22%23ffffff%22,%22theme_color%22:%22%23667eea%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27><rect fill=%27%23667eea%27 width=%27192%27 height=%27192%27/><text x=%2796%27 y=%27120%27 font-size=%27100%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27>📱</text></svg>%22,%22sizes%22:%22192x192%22,%22type%22:%22image/svg+xml%22}]}">
+    <link rel="manifest" href="data:application/json,{%22name%22:%22నా యాప్%22,%22short_name%22:%22యాప్%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22%23ffffff%22,%22theme_color%22:%22%23667eea%22,%22scope%22:%22/%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27><rect fill=%27%23667eea%27 width=%27192%27 height=%27192%27/><text x=%2796%27 y=%27120%27 font-size=%27100%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27>📱</text></svg>%22,%22sizes%22:%22192x192%22,%22type%22:%22image/svg+xml%22,%22purpose%22:%22any%22},{%22src%22:%22data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27><rect fill=%27%23667eea%27 width=%27512%27 height=%27512%27/><text x=%27256%27 y=%27320%27 font-size=%27280%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27>📱</text></svg>%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22,%22purpose%22:%22any%22}]}">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23667eea' width='180' height='180'/><text x='90' y='120' font-size='90' text-anchor='middle' fill='white' font-family='Arial'>📱</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white'>📱</text></svg>">
     <style>
         * {
             margin: 0;
@@ -128,6 +133,11 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         .btn-secondary {
             background: #f0f0f0;
             color: #333;
@@ -231,6 +241,24 @@
             color: #333;
         }
         
+        .status-msg {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
         footer {
             text-align: center;
             color: white;
@@ -257,24 +285,21 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <h1>🚀 నా సుందర యాప్</h1>
         <p>మీ జీవన్‌ను సులభం చేయండి</p>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Welcome Card -->
         <div class="card">
             <h2>🎉 స్వాగతం!</h2>
             <p>ఈ యాప్‌కు హోమ్ స్క్రీన్‌కు జోడించండి మరియు ఎప్పుడైనా త్వరిత యాక్సెస్ పొందండి!</p>
-            <button class="btn btn-primary" onclick="promptInstall()" style="width: 100%; margin-top: 12px;">
+            <div id="statusMessage"></div>
+            <button class="btn btn-primary" id="installBtn" onclick="promptInstall()" style="width: 100%; margin-top: 12px;">
                 హోమ్ స్క్రీన్‌కు జోడించండి
             </button>
         </div>
 
-        <!-- Features Card -->
         <div class="card">
             <h2>✨ ఫీచర్‌లు</h2>
             <p>ఈ యాప్‌లో ఉన్న అద్భుత ఫీచర్‌లు:</p>
@@ -298,7 +323,6 @@
             </div>
         </div>
 
-        <!-- Info Card -->
         <div class="card">
             <h2>📖 సమాచారం</h2>
             <p>ఈ యాప్ Progressive Web App (PWA) టెక్నాలజీ ఉపయోగించి నిర్మించబడింది. ఇది మీ ఫోన్‌లో యాప్ వలె పనిచేస్తుంది.</p>
@@ -309,7 +333,6 @@
         </div>
     </div>
 
-    <!-- Install Popup -->
     <div class="popup" id="installPopup">
         <div class="popup-header">
             <div>
@@ -330,18 +353,41 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 నా సుందర యాప్. అన్ని హక్కులు సংరక్షితం.</p>
+        <p>&copy; 2025 నా సుందర యాప్. అన్ని హక్కులు సంరక్షితం.</p>
     </footer>
 
     <script>
         let deferredPrompt;
         const POPUP_DISMISSED_KEY = 'installPopupDismissed';
-        const POPUP_DISMISS_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days
+        const POPUP_DISMISS_TIME = 7 * 24 * 60 * 60 * 1000;
 
-        // beforeinstallprompt ఈవెంట్ కోసం విని చేయండి
+        // Service Worker Register చేయండి
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript,' + encodeURIComponent(`
+                self.addEventListener('install', event => {
+                    console.log('Service Worker installed');
+                    self.skipWaiting();
+                });
+                
+                self.addEventListener('activate', event => {
+                    console.log('Service Worker activated');
+                    event.waitUntil(clients.claim());
+                });
+                
+                self.addEventListener('fetch', event => {
+                    console.log('Fetch event:', event.request.url);
+                });
+            `)).then(reg => {
+                console.log('Service Worker registered successfully');
+                showStatus('సేవా కార్యకర్త నమోదు చేయబడింది! 📡', 'success');
+            }).catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('beforeinstallprompt event triggered');
             e.preventDefault();
             deferredPrompt = e;
             
@@ -349,7 +395,18 @@
             if (!dismissedTime || Date.now() - parseInt(dismissedTime) > POPUP_DISMISS_TIME) {
                 showPopup();
             }
+            
+            document.getElementById('installBtn').disabled = false;
+            showStatus('ఇన్‌స్టాల్ సిద్ధం! ✅', 'info');
         });
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.innerHTML = `<div class="status-msg status-${type}">${message}</div>`;
+            setTimeout(() => {
+                statusEl.innerHTML = '';
+            }, 5000);
+        }
 
         function showPopup() {
             const popup = document.getElementById('installPopup');
@@ -365,12 +422,18 @@
         }
 
         async function installApp() {
-            if (!deferredPrompt) return;
+            if (!deferredPrompt) {
+                showStatus('ఇన్‌స్టాల్ ఆప్షన్ ఉపలబ్ధం కాలేదు', 'info');
+                return;
+            }
             
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
             
             console.log(`యూజర్ సమాధానం: ${outcome}`);
+            if (outcome === 'accepted') {
+                showStatus('యాప్ ఇన్‌స్టాల్ చేయబడుతోంది! 🎉', 'success');
+            }
             dismissPopup();
             deferredPrompt = null;
         }
@@ -379,12 +442,13 @@
             if (deferredPrompt) {
                 installApp();
             } else {
-                alert('ఇన్‌స్టాల్ ఆప్షన్ ఇప్పుడు అందుబాటులో లేదు. దయచేసి బ్రౌజర్ మెనూ ద్వారా ఆజ్ఞ చేయండి.');
+                showStatus('దయచేసి Chrome/Edge ఉపయోగించండి మరియు మొబైల్‌లో ప్రయత్నించండి', 'info');
             }
         }
 
         window.addEventListener('appinstalled', () => {
             console.log('యాప్ ఇన్‌స్టాల్ చేయబడింది');
+            showStatus('యాప్ సफలంగా ఇన్‌స్టాల్ చేయబడింది! 🚀', 'success');
             dismissPopup();
         });
 
@@ -404,6 +468,16 @@
                 }
             }
         }
+
+        // Chrome/Android lo ani check cheyandi
+        window.addEventListener('load', () => {
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isChrome = /Chrome/.test(navigator.userAgent);
+            
+            if (!isAndroid) {
+                showStatus('మోబైల్ ఉపకరణంలో ఉత్తమంగా పనిచేస్తుంది', 'info');
+            }
+        });
     </script>
 </body>
 </html>
